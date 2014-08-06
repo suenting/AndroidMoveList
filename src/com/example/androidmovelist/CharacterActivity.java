@@ -44,32 +44,32 @@ public class CharacterActivity extends FragmentActivity implements
 		Intent intent = getIntent();
 		mMessage = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
 		
-		if(0==mMessage){setTitle("Ragna");}
-		else if(1==mMessage){setTitle("Jin");}
-		else if(2==mMessage){setTitle("Noel");}
-		else if(3==mMessage){setTitle("Rachel");}
-		else if(4==mMessage){setTitle("Taokaka");}
-		else if(5==mMessage){setTitle("Tager");}
-		else if(6==mMessage){setTitle("Litchi");}
-		else if(7==mMessage){setTitle("Arakune");}
-		else if(8==mMessage){setTitle("Bang");}
-		else if(9==mMessage){setTitle("Carl");}
-		else if(10==mMessage){setTitle("Hakumen");}
-		else if(11==mMessage){setTitle("Tsubaki");}
-		else if(12==mMessage){setTitle("Hazama");}
-		else if(13==mMessage){setTitle("Makoto");}
-		else if(14==mMessage){setTitle("Valkenhein");}
-		else if(15==mMessage){setTitle("Platnium");}
-		else if(16==mMessage){setTitle("Relius");}
-		else if(17==mMessage){setTitle("Amane");}
-		else if(18==mMessage){setTitle("Bullet");}
-		else if(19==mMessage){setTitle("Azreal");}
-		else if(20==mMessage){setTitle("Nu-13");}
-		else if(21==mMessage){setTitle("Mu-12");}
-		else if(22==mMessage){setTitle("Izayoi");}
-		else if(23==mMessage){setTitle("Kagura");}
-		else if(24==mMessage){setTitle("Terumi");}
-		else if(25==mMessage){setTitle("Kokonoe");}
+		if(0==mMessage){setTitle("Ragna");getActionBar().setIcon(R.drawable.icon_ragna);}
+		else if(1==mMessage){setTitle("Jin");getActionBar().setIcon(R.drawable.icon_jin);}
+		else if(2==mMessage){setTitle("Noel");getActionBar().setIcon(R.drawable.icon_noel);}
+		else if(3==mMessage){setTitle("Rachel");getActionBar().setIcon(R.drawable.icon_rachel);}
+		else if(4==mMessage){setTitle("Taokaka");getActionBar().setIcon(R.drawable.icon_tao);}
+		else if(5==mMessage){setTitle("Tager");getActionBar().setIcon(R.drawable.icon_tager);}
+		else if(6==mMessage){setTitle("Litchi");getActionBar().setIcon(R.drawable.icon_litchi);}
+		else if(7==mMessage){setTitle("Arakune");getActionBar().setIcon(R.drawable.icon_arakune);}
+		else if(8==mMessage){setTitle("Bang");getActionBar().setIcon(R.drawable.icon_bang);}
+		else if(9==mMessage){setTitle("Carl");getActionBar().setIcon(R.drawable.icon_carl);}
+		else if(10==mMessage){setTitle("Hakumen");getActionBar().setIcon(R.drawable.icon_hakumen);}
+		else if(11==mMessage){setTitle("Tsubaki");getActionBar().setIcon(R.drawable.icon_tsubaki);}
+		else if(12==mMessage){setTitle("Hazama");getActionBar().setIcon(R.drawable.icon_hazama);}
+		else if(13==mMessage){setTitle("Makoto");getActionBar().setIcon(R.drawable.icon_makoto);}
+		else if(14==mMessage){setTitle("Valkenhein");getActionBar().setIcon(R.drawable.icon_valkenhayn);}
+		else if(15==mMessage){setTitle("Platnium");getActionBar().setIcon(R.drawable.icon_platnium);}
+		else if(16==mMessage){setTitle("Relius");getActionBar().setIcon(R.drawable.icon_relius);}
+		else if(17==mMessage){setTitle("Amane");getActionBar().setIcon(R.drawable.icon_amane);}
+		else if(18==mMessage){setTitle("Bullet");getActionBar().setIcon(R.drawable.icon_bullet);}
+		else if(19==mMessage){setTitle("Azreal");getActionBar().setIcon(R.drawable.icon_azael);}
+		else if(20==mMessage){setTitle("Nu-13");getActionBar().setIcon(R.drawable.icon_v13);}
+		else if(21==mMessage){setTitle("Mu-12");getActionBar().setIcon(R.drawable.icon_mu12);}
+		else if(22==mMessage){setTitle("Izayoi");getActionBar().setIcon(R.drawable.icon_izayoi);}
+		else if(23==mMessage){setTitle("Kagura");getActionBar().setIcon(R.drawable.icon_kagura);}
+		else if(24==mMessage){setTitle("Terumi");getActionBar().setIcon(R.drawable.icon_terumi);}
+		else if(25==mMessage){setTitle("Kokonoe");getActionBar().setIcon(R.drawable.icon_kokonoe);}
 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
