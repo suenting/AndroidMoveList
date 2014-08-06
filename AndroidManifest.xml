@@ -24,7 +24,11 @@
         </activity>
         <activity
             android:name="com.example.androidmovelist.CharacterActivity"
-            android:label="@string/title_activity_character" >
+            android:label="@string/title_activity_character" 
+            android:parentActivityName="com.example.androidmovelist.MainActivity">
+            <meta-data 
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.androidmovelist.MainActivity"/>
         </activity>
     </application>
 
