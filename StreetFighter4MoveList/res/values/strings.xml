@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">StreetFighter4MoveList</string>
+    <string name="action_settings">Settings</string>
+    <string name="blank">blank</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="movelist">movelist</string>
+    <string name="title_activity_character">CharacterActivity</string>
+
+</resources>
