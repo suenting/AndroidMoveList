@@ -10,9 +10,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -44,32 +46,9 @@ public class CharacterActivity extends FragmentActivity implements
 		Intent intent = getIntent();
 		mMessage = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
 		
-		if(0==mMessage){setTitle("Ragna");getActionBar().setIcon(R.drawable.icon_ragna);}
-		else if(1==mMessage){setTitle("Jin");getActionBar().setIcon(R.drawable.icon_jin);}
-		else if(2==mMessage){setTitle("Noel");getActionBar().setIcon(R.drawable.icon_noel);}
-		else if(3==mMessage){setTitle("Rachel");getActionBar().setIcon(R.drawable.icon_rachel);}
-		else if(4==mMessage){setTitle("Taokaka");getActionBar().setIcon(R.drawable.icon_tao);}
-		else if(5==mMessage){setTitle("Tager");getActionBar().setIcon(R.drawable.icon_tager);}
-		else if(6==mMessage){setTitle("Litchi");getActionBar().setIcon(R.drawable.icon_litchi);}
-		else if(7==mMessage){setTitle("Arakune");getActionBar().setIcon(R.drawable.icon_arakune);}
-		else if(8==mMessage){setTitle("Bang");getActionBar().setIcon(R.drawable.icon_bang);}
-		else if(9==mMessage){setTitle("Carl");getActionBar().setIcon(R.drawable.icon_carl);}
-		else if(10==mMessage){setTitle("Hakumen");getActionBar().setIcon(R.drawable.icon_hakumen);}
-		else if(11==mMessage){setTitle("Tsubaki");getActionBar().setIcon(R.drawable.icon_tsubaki);}
-		else if(12==mMessage){setTitle("Hazama");getActionBar().setIcon(R.drawable.icon_hazama);}
-		else if(13==mMessage){setTitle("Makoto");getActionBar().setIcon(R.drawable.icon_makoto);}
-		else if(14==mMessage){setTitle("Valkenhein");getActionBar().setIcon(R.drawable.icon_valkenhayn);}
-		else if(15==mMessage){setTitle("Platnium");getActionBar().setIcon(R.drawable.icon_platnium);}
-		else if(16==mMessage){setTitle("Relius");getActionBar().setIcon(R.drawable.icon_relius);}
-		else if(17==mMessage){setTitle("Amane");getActionBar().setIcon(R.drawable.icon_amane);}
-		else if(18==mMessage){setTitle("Bullet");getActionBar().setIcon(R.drawable.icon_bullet);}
-		else if(19==mMessage){setTitle("Azreal");getActionBar().setIcon(R.drawable.icon_azael);}
-		else if(20==mMessage){setTitle("Nu-13");getActionBar().setIcon(R.drawable.icon_v13);}
-		else if(21==mMessage){setTitle("Mu-12");getActionBar().setIcon(R.drawable.icon_mu12);}
-		else if(22==mMessage){setTitle("Izayoi");getActionBar().setIcon(R.drawable.icon_izayoi);}
-		else if(23==mMessage){setTitle("Kagura");getActionBar().setIcon(R.drawable.icon_kagura);}
-		else if(24==mMessage){setTitle("Terumi");getActionBar().setIcon(R.drawable.icon_terumi);}
-		else if(25==mMessage){setTitle("Kokonoe");getActionBar().setIcon(R.drawable.icon_kokonoe);}
+		// set action bar title
+		setTitle(CharacterData.characterNames[mMessage]);
+		getActionBar().setIcon(CharacterData.iconIds[mMessage]);
 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
@@ -106,6 +85,24 @@ public class CharacterActivity extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+	}
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            NavUtils.navigateUpFromSameTask(this);
+            overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+	
+	@Override
+	public void onBackPressed(){
+		super.onBackPressed();
+		overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
 	}
 
 	@Override
@@ -189,114 +186,8 @@ public class CharacterActivity extends FragmentActivity implements
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_move_list,container, false);
 			ImageView imgView = (ImageView)rootView;
-			switch(getArguments().getInt(ARG_CHARACTER_NUMBER))
-			{
-			case 0:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.ragna_styleish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.ragna_technical);}
-				break;
-			case 1:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.jin_styleish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.jin_technical);}
-				break;
-			case 2:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.noel_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.noel_technical);}
-				break;
-			case 3:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.rachel_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.rachel_technical);}
-				break;
-			case 4:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.taokaka_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.taokaka_technical);}
-				break;
-			case 5:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.tager_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.tager_technical);}
-				break;
-			case 6:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.litchi_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.litchi_technical);}
-				break;
-			case 7:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.arakune_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.arakune_technical);}
-				break;
-			case 8:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.bang_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.bang_technical);}
-				break;
-			case 9:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.carl_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.carl_technical);}
-				break;
-			case 10:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.hakumen_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.hakumen_technical);}
-				break;
-			case 11:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.tsubaki_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.tsubaki_technical);}
-				break;
-			case 12:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.hazama_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.hazama_technical);}
-				break;
-			case 13:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.makoto_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.makoto_technical);}
-				break;
-			case 14:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.valkenhayn_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.valkenhayn_technical);}
-				break;
-			case 15:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.platinum_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.platinum_technical);}
-				break;
-			case 16:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.relius_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.relius_technical);}
-				break;
-			case 17:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.amane_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.amane_technical);}
-				break;
-			case 18:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.bullet_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.bullet_technical);}
-				break;
-			case 19:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.azrael_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.azrael_technical);}
-				break;
-			case 20:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.nu13_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.nu13_technical);}
-				break;
-			case 21:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.mu12_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.mu12_technical);}
-				break;
-			case 22:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.izayoi_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.izayoi_technical);}
-				break;
-			case 23:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.kagura_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.kagura_technical);}
-				break;
-			case 24:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.terumi_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.terumi_technical);}
-				break;
-			case 25:
-				if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.kokonoe_stylish);}
-				if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(R.drawable.kokonoe_technical);}
-				break;
-			}
-
+			if(0==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(CharacterData.styleishMovesIds[getArguments().getInt(ARG_CHARACTER_NUMBER)]);}
+			if(1==getArguments().getInt(ARG_SECTION_NUMBER)){imgView.setImageResource(CharacterData.technicalMovesIds[getArguments().getInt(ARG_CHARACTER_NUMBER)]);}
 			
 			return rootView;
 		}		

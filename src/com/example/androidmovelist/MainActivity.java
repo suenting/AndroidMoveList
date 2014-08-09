@@ -1,16 +1,21 @@
 package com.example.androidmovelist;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.androidmovelist.CharacterData;
 
 public class MainActivity extends Activity {
 	public static String EXTRA_MESSAGE = "com.movelist.MESSAGE";
@@ -19,43 +24,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		// array values for list view
-	    String[] values = new String[] { 
-	    		"Ragna", 
-	    		"Jin", 
-	    		"Noel",
-	            "Rachel",
-	            "Taokaka",
-	            "Tager",
-	            "Litchi",
-	            "Arakune",
-	            "Bang",
-	            "Carl",
-	            "Hakumen",
-	            "Tsubaki",
-	            "Hazama",
-	            "Makoto",
-	            "Valkenhein",
-	            "Platnium",
-	            "Relius",
-	            "Amane",
-	            "Bullet",
-	            "Azreal",
-	            "Nu-13",
-	            "Mu-12",
-	            "Izayoi",
-	            "Kagura",
-	            "Terumi",
-	            "Kokonoe"};
-	    final ArrayList<String> list = new ArrayList<String>();
-	    for (int i = 0; i < values.length; ++i) {
-	      list.add(values[i]);
-	    }
-	    
-	    // create array adapter for list view
-	    ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.list_item,R.id.list_content, values);
+		// create and populate custom adapter
+		CustomListAdapter customAdapter = new CustomListAdapter();
 	    final ListView listview = (ListView) findViewById(R.id.listView1);
-	    listview.setAdapter(adapter);
+	    listview.setAdapter(customAdapter);
 	    
 	    // handle list input
 	    listview.setOnItemClickListener(new OnItemClickListener() {
@@ -66,6 +38,7 @@ public class MainActivity extends Activity {
 	    		Intent intent = new Intent(MainActivity.this, CharacterActivity.class);
 	    	    intent.putExtra(EXTRA_MESSAGE, (position));
 	    	    startActivity(intent);
+	    	    overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
 	    	  }
 	    	}); 
 
@@ -77,6 +50,58 @@ public class MainActivity extends Activity {
 		// getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	public class listViewObject
+	{
+		public String mName;
+		public int mImagePath;
+		public listViewObject(String name, int imagePath)
+		{
+			mName = name;
+			mImagePath = imagePath;
+		}
+		public listViewObject(listViewObject obj)
+		{
+			this(obj.mName,obj.mImagePath);
+		}
+	}
 	
+	public class CustomListAdapter extends BaseAdapter
+	{
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return CharacterData.characterNames.length;
+		}
 
+		@Override
+		public Object getItem(int arg0) {
+			// TODO Auto-generated method stub
+			listViewObject obj = new listViewObject(CharacterData.characterNames[arg0],CharacterData.iconIds[arg0]);
+			return obj;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView==null)
+            {
+                LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.list_item, parent,false);
+            }
+
+            TextView charName = (TextView)convertView.findViewById(R.id.list_content);
+            ImageView charIcon = (ImageView)convertView.findViewById(R.id.list_icon);
+
+            charName.setText(CharacterData.characterNames[position]);
+            charIcon.setImageResource(CharacterData.iconIds[position]);
+
+            return convertView;
+		}
+
+	}
 }
